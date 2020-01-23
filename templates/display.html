@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+    <h1>Welcome User,</h1>
+    <p>{{filename}}</p>
+    <h2>These are the files you currently have</h2>
+    <table>
+        <tr>
+            <th width=90%>Name</th>
+            <th class='std'>Delete</th>
+            <th class='std'>Go</th>
+        </tr>
+    
+    {% for f in files %}
+        <tr>
+            <td>{{f}}</td>
+            <td><a href="{{url_for('delete_file', filename=f)}}">Delete</a></td>
+            <td><a href="{{url_for('uploaded_file', filename=f)}}">Go</a></td>
+        </tr>
+    {% endfor %}
+    </table>
+    <style>
+        table{
+            text-align: left;
+        }
+        .std{
+            text-align: center;
+        }
+        th, td{
+            border-right: 1px solid rgb(175, 91, 91);
+            background-color: rgb(235, 215, 186);
+            padding: 10px;
+            font-size: 23px;
+            margin: 15px;
+        }
+    </style>
+    <p><a href="{{url_for('upload_file')}}">Upload New Files</a></p>
+</div>
+{% endblock %}
